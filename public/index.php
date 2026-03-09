@@ -1,0 +1,24 @@
+<?php
+session_start();
+
+// Autoloader simples para carregar as classes da pasta app/ automaticamente
+spl_autoload_register(function ($class) {
+    // Converte o namespace (ex: app\Core\Router) para o caminho do arquivo (app/Core/Router.php)
+    $path = __DIR__ . '/../' . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($path)) {
+        require_once $path;
+    }
+});
+
+use app\Core\Request;
+use app\Core\Router;
+
+// Instancia as classes do núcleo
+$request = new Request();
+$router = new Router($request);
+
+// Carrega o arquivo de rotas
+require_once __DIR__ . '/../routes.php';
+
+// Executa a rota acessada
+$router->resolve();

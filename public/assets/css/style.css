@@ -1,0 +1,323 @@
+:root {
+    --primary-color: #00003c;
+    --secondary-color: #d4ad68;
+    --terciary-color: #486f99;
+    --white: #FFFFFF;
+    
+    --text-gray: #555555;
+    --border-color: #e0e0e0;
+    --bg-light: #f9f9f9;
+
+    --bg-overlay: rgba(5, 5, 15, 0.6);
+    --bg-overlay-deep: rgba(0, 0, 10, 0.65);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-image:
+        radial-gradient(circle at 80% 20%, rgba(0, 0, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(0, 0, 60, 0.2) 0%, transparent 40%),
+        linear-gradient(var(--bg-overlay), var(--bg-overlay-deep)),
+        url('../img/bg.jpg'); /* Substitua pela imagem da nova marca */
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container Principal */
+.login-container {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+/* Lado Esquerdo */
+.login-left {
+    flex: 1;
+}
+
+ .logo img{
+    width:220px;
+    max-width:100%;
+    margin-bottom:25px;
+}
+
+.login-left h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.login-left p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* Lado Direito (Card) */
+.login-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.login-card {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.login-card h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+/* Botões CPF / CNPJ */
+.toggle-buttons {
+    display: flex;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.btn-toggle {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: var(--white);
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-toggle.active {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+/* Inputs do Formulário */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--secondary-color);
+}
+
+/* Botão Acessar */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: #b89556; /* Tom levemente mais escuro do secundário */
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* --- ESTILOS DO PAINEL LOGADO (CONTRATOS, PARCELAS, ETC) --- */
+
+/* Fundo cinza claro para destacar os cards brancos, diferente da tela de login */
+body.bg-gray {
+    background-color: #f4f5f7;
+    background-image: none;
+    display: block; /* Remove o flex do login para o fluxo normal da página */
+    height: auto;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.user-info p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 3px;
+}
+
+.btn-logout {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-logout:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+/* .header-actions i {
+    color: red;
+} */
+
+/* Container Principal (Miolo da página) */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+}
+
+
+
+/* ------------------------------------ Caixa de Contato ------------------------------------ */
+
+.contact-box{
+    margin-top:20px;
+    text-align:center;
+    width:100%;
+    max-width:450px;
+}
+
+.contact-box p{
+    font-size:1rem;
+    margin-bottom:12px;
+    opacity:0.9;
+}
+
+/* Botões */
+
+.contact-buttons{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.contact-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    
+    padding:10px 16px;
+    font-size:1rem;
+    font-weight:600;
+
+    text-decoration:none;
+
+    border-radius:6px;
+
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+
+    color:var(--white);
+
+    transition:all .2s ease;
+}
+
+/* Hover */
+
+.contact-btn:hover{
+    background:var(--secondary-color);
+    border-color:var(--secondary-color);
+}
+
+/* Ícone */
+
+.contact-btn .icon{
+    font-size:1rem;
+}

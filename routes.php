@@ -11,3 +11,5 @@ $router->get('/logout', [AuthController::class, 'logout']);
 // Rotas do Portal (Contratos)
 $router->get('/contratos', [ContractController::class, 'index']);
 
+// Rota para requisição de geração de boleto
+$router->post('/gerar-boleto', [ContractController::class, 'gerarBoleto']);

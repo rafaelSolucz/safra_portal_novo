@@ -12,6 +12,14 @@ spl_autoload_register(function ($class) {
 
 use app\Core\Request;
 use app\Core\Router;
+use app\Core\Environment; // Importa a classe Environment
+
+// Carrega as variáveis de ambiente do arquivo .env que deve estar na raiz do projeto
+try {
+    Environment::load(__DIR__ . '/../');
+} catch (Exception $e) {
+    die("Erro Crítico: " . $e->getMessage());
+}
 
 // Instancia as classes do núcleo
 $request = new Request();

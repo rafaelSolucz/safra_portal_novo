@@ -4,7 +4,8 @@
 <header class="main-header">
     <div class="header-content">
         <div class="header-logo-info">
-            <h2 class="logo-text">SAFRA</h2>
+            <!-- <h2 class="logo-text">SAFRA</h2> -->
+            <img src="./assets/img/logo-safra.png" alt="Logo Safra" class="logo-img">
             
             <div class="user-info">
                 <p><strong>Nome:</strong> <?= $_SESSION['user_name'] ?? 'Cliente' ?></p>
@@ -14,10 +15,11 @@
         
         <div class="header-actions">
             <a href="/safra_portal_novo/public/logout" class="btn-logout" title="Sair">
-                <!-- <i class="fa-solid fa-arrow-right-from-bracket"></i> -->
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <!-- <i>&#10140;</i>  -->
                 Sair
             </a>
         </div>
     </div>
 </header>
+<div class="header-divider" style="height: 3px; background: var(--secondary-color);"></div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Autonegociação - Safra</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/favicon.webp" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -24,6 +24,13 @@
         <div class="login-right">
             <div class="login-card">
                 <h3>SEJA BEM-VINDO(A)</h3>
+
+                <?php if(isset($_SESSION['error'])): ?>
+                    <div style="background-color: #fef2f2; color: #b91c1c; padding: 10px; border-radius: 6px; margin-bottom: 15px; text-align: center; font-size: 0.9rem; border: 1px solid #f87171;">
+                        <?= $_SESSION['error']; ?>
+                    </div>
+                    <?php unset($_SESSION['error']); // Limpa o erro após exibir ?>
+                <?php endif; ?>
                 
                 <div class="toggle-buttons">
                     <button type="button" class="btn-toggle active" id="btn-cpf" onclick="toggleDocType('cpf')">CPF</button>
@@ -34,6 +41,8 @@
                     <div class="input-group">
                         <label id="label-doc" for="documento">CPF</label>
                         <input type="text" id="documento" name="documento" placeholder="Digite seu CPF" required>
+                        <div id="doc-error" style="color: #d32f2f; font-size: 14px; margin-top: 5px; text-align: left; font-weight: 500;"></div>
+                        <!-- <div id="doc-error" style="color: #dc2626; font-size: 0.85rem; margin-top: 4px; display: none; font-weight: 500;"></div> -->
                     </div>
 
 
@@ -45,7 +54,7 @@
 
                 <div class="contact-buttons">
 
-                    <a href="https://wa.me/551135097752?text=Ol%C3%A1%21%20Vim%20do%20portal%20Banco%20Safra%20x%20Solucz%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                    <a href="https://wa.me/551135097752?text=Ol%C3%A1%21%20Vim%20do%20portal%20Banco%20Safra%20x%20Araúz%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
                         class="contact-btn whatsapp" target="_blank">
                         
                         <i class="fa-brands fa-whatsapp"></i>

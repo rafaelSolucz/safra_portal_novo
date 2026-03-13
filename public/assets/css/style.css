@@ -205,10 +205,17 @@ body.bg-gray {
     gap: 10px;
 }
 
-.logo-text {
+/* .logo-text {
     font-size: 2rem;
     font-weight: 900;
     letter-spacing: 1px;
+} */
+
+/* Remova a classe .logo-text antiga e adicione esta: */
+.logo-img {
+    max-width: 150px; /* Ajuste este valor de acordo com o tamanho real do seu logo */
+    height: auto;
+    display: block;
 }
 
 .user-info p {
@@ -217,7 +224,7 @@ body.bg-gray {
     margin-bottom: 3px;
 }
 
-.btn-logout {
+/* .btn-logout {
     background-color: var(--white);
     color: var(--primary-color);
     padding: 10px 20px;
@@ -234,6 +241,26 @@ body.bg-gray {
 .btn-logout:hover {
     background-color: var(--secondary-color);
     color: var(--white);
+} */
+
+.btn-logout {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--white);
+}
+
+.btn-logout:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
 }
 
 /* .header-actions i {
@@ -320,4 +347,356 @@ body.bg-gray {
 
 .contact-btn .icon{
     font-size:1rem;
+}
+
+/* --- LAYOUT DO DASHBOARD --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Cards Gerais */
+.card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 25px;
+    /* box-shadow: 0 2px 10px rgba(0,0,0,0.05); */
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* Informações do Contrato */
+.contract-info {
+    display: flex;
+    gap: 60px;
+}
+
+.contract-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contract-info span {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.contract-info strong {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+/* Badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-warning {
+    background-color: #fdf3eb;
+    color: #c84040;
+}
+
+/* Lista de Parcelas */
+.parcel-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.parcel-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f4f5f7;
+    color: #c84040;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.parcel-item:last-child .parcel-icon {
+    color: var(--terciary-color);
+}
+
+.parcel-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.parcel-details strong {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.parcel-details span {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-top: 3px;
+}
+
+.parcel-value {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.parcel-value strong {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.parcel-value .status {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 3px;
+}
+
+.status.atrasada { color: #c84040; }
+.status.atual { color: var(--terciary-color); }
+
+/* --- CARD DE RESUMO (DIREITA) --- */
+.summary-card {
+    background: var(--white);
+    border-radius: 12px;
+    /* box-shadow: 0 5px 15px rgba(0,0,0,0.08); */
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.summary-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Detalhe visual de círculos no fundo escuro */
+.summary-header::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -20px;
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+}
+
+.summary-header span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.summary-header h2 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-top: 10px;
+}
+
+.summary-body {
+    padding: 25px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+}
+
+.summary-row strong {
+    color: var(--primary-color);
+}
+
+.btn-boleto {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-boleto:hover {
+    background-color: #b89556;
+}
+
+.summary-footer {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.summary-footer i {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+}
+
+.summary-footer p {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    line-height: 1.4;
+}
+
+/* Responsividade Básica */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ################################################################################## */
+
+/* --- ESTADO DE SUCESSO DO BOLETO --- */
+.success-box {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: #166534;
+    margin-bottom: 25px;
+}
+
+.success-box i {
+    font-size: 2rem;
+    color: #22c55e;
+    margin-bottom: 10px;
+}
+
+.success-box h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.success-box p {
+    font-size: 0.9rem;
+    color: #15803d;
+}
+
+.barcode-section {
+    margin-bottom: 20px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6b7280;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.barcode-box {
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+#linha-digitavel {
+    font-family: 'Courier New', Courier, monospace;
+    /* font-size: 1.05rem; */
+    font-size: 0.95rem;
+    color: #1f2937;
+    margin-bottom: 15px;
+    word-break: break-all;
+    font-weight: 600;
+}
+
+.btn-copy {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-copy:hover {
+    background-color: #000020; /* Tom mais escuro do azul do Safra */
+}
+
+.btn-download-pdf {
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-download-pdf:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
 }

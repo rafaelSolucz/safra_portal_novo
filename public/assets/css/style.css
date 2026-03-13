@@ -451,9 +451,9 @@ body.bg-gray {
     margin-right: 15px;
 }
 
-.parcel-item:last-child .parcel-icon {
+/* .parcel-item:last-child .parcel-icon {
     color: var(--terciary-color);
-}
+} */
 
 .parcel-details {
     flex: 1;

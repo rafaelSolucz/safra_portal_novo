@@ -142,7 +142,9 @@ async function gerarBoleto(contratoId) {
     const btn = document.getElementById('btn-gerar-boleto');
     const textoOriginal = btn.innerHTML;
     
-    // Feedback visual de carregamento
+    // Captura o token CSRF da meta tag do header
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando Boleto...';
     btn.disabled = true;
 
@@ -151,6 +153,7 @@ async function gerarBoleto(contratoId) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken // Envia o token de forma segura
             },
             body: JSON.stringify({ contrato: contratoId })
         });
@@ -193,3 +196,28 @@ function copiarCodigo() {
         alert('Erro ao copiar o código. Seu navegador pode não suportar esta função.');
     });
 }
+
+// --- CORREÇÃO DO BFCache (Botão Voltar do Navegador) ---
+// Este evento é disparado toda vez que a página é exibida
+window.addEventListener('pageshow', function(event) {
+    // A propriedade 'persisted' é true se a página foi carregada do cache (botão voltar)
+    if (event.persisted) {
+        
+        // 1. Reseta o botão de login (se existir na tela atual)
+        const btnSubmit = document.querySelector('.btn-submit');
+        if (btnSubmit) {
+            btnSubmit.innerHTML = 'Acessar';
+            btnSubmit.disabled = false;
+        }
+        
+        // 2. Reseta o botão de gerar boleto (caso o usuário volte de um PDF, por exemplo)
+        const btnBoleto = document.getElementById('btn-gerar-boleto');
+        if (btnBoleto) {
+            btnBoleto.innerHTML = '<i class="fa-solid fa-barcode"></i> Gerar Boleto de Pagamento';
+            btnBoleto.disabled = false;
+        }
+        
+        // Opcional: Limpar o campo de senha ou documento se quiser
+        // document.getElementById('documento').value = '';
+    }
+});

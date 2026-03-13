@@ -40,17 +40,50 @@ class ContractController {
             // Guarda a linha digitável na sessão para a requisição via JS
             $_SESSION['linha_digitavel'] = $dadosAPI['boleto_linha_digitavel'];
 
-            // Mapeando a resposta da API para o array esperado pela View
-            // Como 'parcelas_originais' vem como string na sua API, vou mockar 
-            // visualmente uma parcela única para bater com o valor total.
-            $parcelas = [
-                [
-                    'parcela' => 'Única / Acordo', 
-                    'valor' => $dadosAPI['boleto_valor_total'] ?? $dadosAPI['valor_total'] ?? 0, 
-                    'vencimento' => $dadosAPI['boleto_vencimento'] ?? date('Y-m-d'), 
-                    'status' => 'Pendente'
-                ]
-            ];
+            // === NOVA LÓGICA DE PARCELAS ===
+            $parcelas = [];
+            
+            // Verifica se a chave parcelas_originais existe e não está vazia
+            if (!empty($dadosAPI['parcelas_originais'])) {
+                // Decodifica a string JSON que vem do banco para um array associativo do PHP
+                $parcelasDecoded = json_decode($dadosAPI['parcelas_originais'], true);
+                
+                if (is_array($parcelasDecoded)) {
+                    $hoje = new \DateTime();
+                    $hoje->setTime(0, 0, 0); // Zera a hora para comparar apenas a data
+                    
+                    foreach ($parcelasDecoded as $p) {
+                        // A data no banco vem como d/m/Y (ex: 12/12/2025). 
+                        // O PHP pode se confundir com barras, então criamos um DateTime a partir do formato exato.
+                        $dataVencimento = \DateTime::createFromFormat('d/m/Y', $p['dt_vencimento']);
+                        $dataVencimento->setTime(0, 0, 0);
+                        
+                        // Define o status comparando a data de vencimento com a data de hoje
+                        $status = ($dataVencimento < $hoje) ? 'Atrasada' : 'Atual';
+                        
+                        $parcelas[] = [
+                            'parcela' => $p['parcela'], // Pega o número da parcela (ex: "9")
+                            'valor' => $p['valor_total'], // Pega o valor somado
+                            'vencimento' => $dataVencimento->format('Y-m-d'), // Converte para Y-m-d para a View ler corretamente
+                            'status' => $status
+                        ];
+                    }
+                }
+            }
+
+            // Fallback: Se por acaso o array de parcelas vier vazio ou der erro no JSON, 
+            // mantemos o bloco antigo para não quebrar a tela.
+            if (empty($parcelas)) {
+                $parcelas = [
+                    [
+                        'parcela' => 'Única / Acordo', 
+                        'valor' => $dadosAPI['boleto_valor_total'] ?? $dadosAPI['valor_total'] ?? 0, 
+                        'vencimento' => $dadosAPI['boleto_vencimento'] ?? date('Y-m-d'), 
+                        'status' => 'Pendente'
+                    ]
+                ];
+            }
+            // === FIM DA NOVA LÓGICA ===
 
             $contratoData = [
                 'contrato' => $dadosAPI['contrato_longo'] ?? $dadosAPI['contrato_curto'] ?? 'N/D',
@@ -79,6 +112,13 @@ class ContractController {
     }
 
     public function gerarBoleto() {
+        // Validação CSRF para a requisição AJAX
+        if (!\app\Utils\Csrf::validateToken()) {
+            header('Content-Type: application/json', true, 403);
+            echo json_encode(['success' => false, 'message' => 'Token de segurança inválido. Recarregue a página.']);
+            exit;
+        }
+
         // Simulação de delay rápido para UX
         sleep(1); 
 

@@ -8,6 +8,14 @@ class AuthController {
     }
 
     public function authenticate() {
+        // Nova Validação CSRF
+        if (!\app\Utils\Csrf::validateToken()) {
+            $_SESSION['error'] = 'Sessão expirada ou requisição inválida. Tente novamente.';
+            header('Location: /safra_portal_novo/public/login');
+            exit;
+        }
+
+
         // Pega o documento e remove tudo que não for número (pontuações)
         $documento = preg_replace('/\D/', '', $_POST['documento'] ?? '');
         

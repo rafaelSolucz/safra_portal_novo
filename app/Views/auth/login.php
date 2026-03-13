@@ -38,6 +38,7 @@
                 </div>
 
                 <form action="/safra_portal_novo/public/login" method="POST">
+                    <?= app\Utils\Csrf::field() ?>
                     <div class="input-group">
                         <label id="label-doc" for="documento">CPF</label>
                         <input type="text" id="documento" name="documento" placeholder="Digite seu CPF" required>

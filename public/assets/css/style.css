@@ -700,3 +700,80 @@ body.bg-gray {
     background-color: #f9fafb;
     border-color: #9ca3af;
 }
+
+/* ========================================= */
+/* RESPONSIVIDADE - TELA DE LOGIN            */
+/* ========================================= */
+
+/* Ajustes para Tablets e telas médias */
+@media (max-width: 992px) {
+    /* Remove a altura fixa do body na tela de login para permitir rolagem se necessário */
+    body:not(.bg-gray) {
+        height: auto;
+        min-height: 100vh;
+        padding: 40px 0;
+    }
+
+    /* Empilha o lado esquerdo (textos) e o direito (card) */
+    .login-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .login-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-right {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+/* Ajustes para Celulares (Telas pequenas) */
+@media (max-width: 768px) {
+    .login-container {
+        gap: 25px;
+    }
+
+    /* Diminui o espaçamento interno do card para ganhar espaço na tela */
+    .login-card {
+        /* Reduz o padding interno (ex: 20px em cima/embaixo e 15px nas laterais) */
+        padding: 20px 15px; 
+        
+        /* Remove ou diminui qualquer margem externa extra */
+        margin: 0; 
+        
+        /* Opcional: diminuir um pouco o arredondamento das bordas para combinar com o tamanho menor */
+        border-radius: 8px; 
+    }
+
+    /* Ajusta os tamanhos de fonte do texto de boas-vindas do card */
+    .login-card h3 {
+        /* font-size: 1.2rem; */
+        margin-bottom: 10px;
+    }
+
+    /* Ajusta os tamanhos de fonte do texto de boas-vindas */
+    .login-left h2 {
+        font-size: 1.6rem;
+    }
+
+    .login-left p {
+        font-size: 1rem;
+    }
+
+    /* Empilha os botões de contato (WhatsApp, Telefone, Email) */
+    /* .contact-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .contact-btn {
+        justify-content: center;
+    } */
+}

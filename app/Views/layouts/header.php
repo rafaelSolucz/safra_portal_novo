@@ -8,8 +8,8 @@
             <img src="./assets/img/logo-safra.png" alt="Logo Safra" class="logo-img">
             
             <div class="user-info">
-                <p><strong>Nome:</strong> <?= $_SESSION['user_name'] ?? 'Cliente' ?></p>
-                <p><strong>Documento:</strong> <?= $_SESSION['user_doc'] ?? '000.000.000-00' ?></p>
+                <p><strong>Nome:</strong> <?= htmlspecialchars($_SESSION['user_name'] ?? 'Cliente', ENT_QUOTES, 'UTF-8') ?></p>
+                <p><strong>Documento:</strong> <?= htmlspecialchars($_SESSION['user_doc'] ?? '000.000.000-00', ENT_QUOTES, 'UTF-8') ?></p>
             </div>
         </div>
         

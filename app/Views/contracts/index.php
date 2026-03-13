@@ -29,11 +29,11 @@
                     <div class="contract-info">
                         <div>
                             <span>Número do Contrato</span>
-                            <strong><?= $contratoData['contrato'] ?></strong>
+                            <strong><?= htmlspecialchars($contratoData['contrato'], ENT_QUOTES, 'UTF-8') ?></strong>
                         </div>
                         <div>
                             <span>Produto</span>
-                            <strong><?= $contratoData['produto'] ?></strong>
+                            <strong><?= htmlspecialchars($contratoData['produto'], ENT_QUOTES, 'UTF-8') ?></strong>
                         </div>
                     </div>
                 </div>
@@ -47,12 +47,14 @@
                                 <i class="fa-regular fa-calendar"></i>
                             </div>
                             <div class="parcel-details">
-                                <strong>Parcela <?= $parcela['parcela'] ?></strong>
+                                <strong>Parcela <?= htmlspecialchars($parcela['parcela'], ENT_QUOTES, 'UTF-8') ?></strong>
                                 <span>Vencimento: <?= date('d/m/Y', strtotime($parcela['vencimento'])) ?></span>
                             </div>
                             <div class="parcel-value">
                                 <strong>R$ <?= number_format($parcela['valor'], 2, ',', '.') ?></strong>
-                                <span class="status <?= strtolower($parcela['status']) ?>"><?= $parcela['status'] ?></span>
+                                <span class="status <?= htmlspecialchars(strtolower($parcela['status']), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= htmlspecialchars($parcela['status'], ENT_QUOTES, 'UTF-8') ?>
+                                </span>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -78,7 +80,7 @@
                         </div>
 
                         <div id="boleto-action-container">
-                            <button id="btn-gerar-boleto" class="btn-boleto" onclick="gerarBoleto('<?= $contratoData['contrato'] ?>')">
+                            <button id="btn-gerar-boleto" class="btn-boleto" onclick="gerarBoleto('<?= htmlspecialchars($contratoData['contrato'], ENT_QUOTES, 'UTF-8') ?>')">
                                 <i class="fa-solid fa-barcode"></i> Gerar Boleto de Pagamento
                             </button>
 

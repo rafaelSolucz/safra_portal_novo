@@ -27,9 +27,9 @@
 
                 <?php if(isset($_SESSION['error'])): ?>
                     <div style="background-color: #fef2f2; color: #b91c1c; padding: 10px; border-radius: 6px; margin-bottom: 15px; text-align: center; font-size: 0.9rem; border: 1px solid #f87171;">
-                        <?= $_SESSION['error']; ?>
+                        <?= htmlspecialchars($_SESSION['error'], ENT_QUOTES, 'UTF-8'); ?>
                     </div>
-                    <?php unset($_SESSION['error']); // Limpa o erro após exibir ?>
+                    <?php unset($_SESSION['error']); ?>
                 <?php endif; ?>
                 
                 <div class="toggle-buttons">
